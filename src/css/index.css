@@ -32,3 +32,41 @@ body {
   color: var(--text-color);
   margin: 200px 50px;
 }
+
+.parent-node {
+  margin: 5px 0px 0px 5px;
+  list-style-type: none;
+}
+
+.node {
+  cursor: pointer;
+  border: solid 1px #f2f2f2;
+  background-color: #ebeaed;
+  color: #000000;
+  font-family: verdana;
+  margin: 5px 0px 0px 5px;
+}
+
+.node > span.node-name {
+padding: 5px;
+}
+
+.node > img.node-image {
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.node > li {
+  vertical-align: middle;
+}
+
+.content {
+  cursor: pointer;
+  border-left: solid 1px #f2f2f2;
+  border-right: solid 1px #f2f2f2;
+  border-bottom: solid 1px #f2f2f2;
+  border-radius: 0 0 5px 5px;
+  padding: 15px;
+  font-family: verdana;
+  font-size: 14px;
+}
