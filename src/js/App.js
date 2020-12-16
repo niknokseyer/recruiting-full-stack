@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React from 'react'
 import NodeTree from './NodeTree'
 
 // NOTE: ESLint will enforce Táve coding standards:
@@ -32,9 +32,28 @@ class App extends React.Component {
     this.setState({ nodes })
   }
 
+  toggleDarkMode() {
+    const settings = this.state.settings.slice()
+    const setting = settings[0]
+    setting.value = !setting.value
+    this.setState({ settings })
+    if (this.state.settings[0].value) {
+      document.body.classList.add('dark')
+    }
+    else {
+      document.body.classList.remove('dark')
+    }
+  }
+
   render() {
+    const darkMode = this.state.settings.length > 0 ? this.state.settings[0].value : false
     return (
-      <NodeTree nodes={this.state.nodes} onClick={i => this.collapseNode(i)} />
+      <React.Fragment>
+        <button onClick={() => this.toggleDarkMode()}>
+          Dark Mode: {darkMode ? 'On' : 'Off'}
+        </button>
+        <NodeTree nodes={this.state.nodes} onClick={i => this.collapseNode(i)}/>
+      </React.Fragment>
     )
   }
 }

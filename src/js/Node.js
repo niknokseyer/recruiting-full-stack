@@ -2,10 +2,9 @@ import React from 'react'
 
 class Node extends React.Component {
   render() {
-    console.log(this.props.child)
     return (
       <ul key={`node_${this.props.node.id}`} className="parent-node">
-        <li onClick={this.props.child.length > 0 ? this.props.onClick : ''} className={this.props.child.length > 0 ? 'with-child-node node' : 'node'}>
+        <li onClick={this.props.child.length > 0 ? this.props.onClick : null} className={this.props.child.length > 0 ? 'with-child-node node' : 'node'}>
           <img
             src={this.props.node.thumbnail.href}
             alt={this.props.node.thumbnail.description}
