@@ -36,6 +36,7 @@ if (in_array($requestMethod, ["GET", "POST"])) {
                 $the_request = file_get_contents('php://input');
             }
             file_put_contents('../data/testdata.json', $the_request);
+            echo $the_request;
             break;
         default:
             header("HTTP/1.1 405 Method Not Allowed");
