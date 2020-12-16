@@ -39,12 +39,15 @@ body {
 }
 
 .node {
-  cursor: pointer;
   border: solid 1px #f2f2f2;
   background-color: #ebeaed;
   color: #000000;
   font-family: verdana;
   margin: 5px 0px 0px 5px;
+}
+
+.with-child-node {
+  cursor: pointer;
 }
 
 .node > span.node-name {

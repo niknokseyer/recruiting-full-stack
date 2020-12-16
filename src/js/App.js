@@ -29,7 +29,7 @@ class App extends React.Component {
     const nodes = this.state.nodes.slice()
     const node = nodes[id]
     node.collapsed = !node.collapsed
-    this.setState({ nodes: nodes })
+    this.setState({ nodes })
   }
 
   render() {
