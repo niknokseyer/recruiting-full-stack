@@ -4,40 +4,39 @@ import NodeTree from './NodeTree'
 // NOTE: ESLint will enforce Táve coding standards:
 // https://github.com/tave/javascript/  Goodbye semicolons!
 
-function App() {
-  const [data, setData] = useState({
-    nodes: [],
-    settings: [],
-  })
-  const [hasError, setHasError] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      nodes: [],
+      settings: [],
+    }
+  }
 
-  useEffect(() => {
-    setIsLoading(true)
+  componentDidMount() {
     fetch('http://localhost:8000/webservice.php')
       .then(response => response.json())
       .then((json) => {
-        setData(json)
-        setIsLoading(false)
+        this.setState({ nodes: json.nodes })
+        this.setState({ settings: json.settings })
       })
       .catch((err) => {
-        setHasError(true)
-        setIsLoading(false)
         console.log(err)
       })
-  }, [])
+  }
 
-  return (
-    <Fragment>
-      {hasError && <div>Error occurred.</div>}
+  collapseNode(id) {
+    const nodes = this.state.nodes.slice()
+    const node = nodes[id]
+    node.collapsed = !node.collapsed
+    this.setState({ nodes: nodes })
+  }
 
-      {isLoading ? (
-        <div>Loading ...</div>
-      ) : (
-        <NodeTree nodes={data.nodes} />
-      )}
-    </Fragment>
-  )
+  render() {
+    return (
+      <NodeTree nodes={this.state.nodes} onClick={i => this.collapseNode(i)} />
+    )
+  }
 }
 
 export default App

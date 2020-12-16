@@ -1,23 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import Collapsible from './Collapsible'
+import Node from './Node'
 
-class NodeTree extends Component {
-  constructor(props) {
-    super(props)
-  }
-
-  componentDidUpdate() {
-
-  }
-
+class NodeTree extends React.Component {
   getCurrent = node => this.props.nodes.filter(cNode => cNode.parent === node)
     .map(cNode => (
-      <Collapsible
-        id={cNode.id}
-        name={cNode.name}
-        href={cNode.thumbnail.href}
-        description={cNode.thumbnail.description}
+      <Node node={cNode}
+        onClick={() => this.props.onClick(cNode.id)}
         child={this.getCurrent(cNode.id)}
       />
     ))
