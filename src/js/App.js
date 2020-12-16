@@ -30,6 +30,21 @@ class App extends React.Component {
     const node = nodes[id]
     node.collapsed = !node.collapsed
     this.setState({ nodes })
+
+    fetch('http://localhost:8000/webservice.php', {
+      method: 'POST',
+      body: JSON.stringify(this.state),
+    })
+      .then(response => response.json())
+      .then((json) => {
+        //this.setState({ nodes: json.nodes })
+        //this.setState({ settings: json.settings })
+        console.log(json)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
   }
 
   toggleDarkMode() {

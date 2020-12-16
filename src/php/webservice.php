@@ -15,7 +15,7 @@ http://localhost:8000/webservice.php
 
 
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET');
+header('Access-Control-Allow-Methods: GET, POST');
 header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Origin, Content-Type');
 header('Content-Type: application/json');
@@ -23,15 +23,19 @@ header('Content-Type: application/json');
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 // retrieve the inbound parameters based on request type.
-if (in_array($requestMethod, ["GET"])) {
+if (in_array($requestMethod, ["GET", "POST"])) {
 
     switch ($requestMethod) {
         case 'GET':
-            $the_request = &$_GET;
-
-            $file = "data.csv";
             $json = file_get_contents('../data/testdata.json');
             echo $json;
+            break;
+        case 'POST':
+            $the_request = &$_POST;
+            if (empty($the_request)) {
+                $the_request = file_get_contents('php://input');
+            }
+            file_put_contents('../data/testdata.json', $the_request);
             break;
         default:
             header("HTTP/1.1 405 Method Not Allowed");
