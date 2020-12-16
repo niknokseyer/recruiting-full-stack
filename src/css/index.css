@@ -82,3 +82,9 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
 }
+
+.icon {
+    font-size: 9px;
+    vertical-align: middle;
+    padding: 4px;
+}

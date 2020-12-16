@@ -13,7 +13,7 @@ class Node extends React.Component {
             className="node-image"
           />
           {' '}
-          {this.props.node.name}
+          {this.props.node.name} <span className="icon">{this.props.child.length > 0 ? (this.props.node.collapsed ? '▼' : '►') : '' }</span>
         </li>
         {this.props.node.collapsed ? (
           this.props.child
